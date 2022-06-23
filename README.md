@@ -11,9 +11,15 @@ This webapp is created in Django and styled in TailwindCSS.
 This is not yet responsive for mobile view but will try to improve it soon.
 
 This app has two views:
+
 1] Organizor: The organization which manages all the agents and leads under them. They have all the CRUD permissions.
+
 2] Agents: The agent who manages all the leads assigned under them. They have a view only permission from which they can view the status of the leads under them.
 
+
 There are different categories under which leads may segment into.
+
 For now there are 3 categories: Contacted, Converted, Unconverted.
+
 The newly created leads will have New Category as default. However, the organization have the permission to update it.
+
