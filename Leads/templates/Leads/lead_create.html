@@ -1,0 +1,18 @@
+{% extends 'basic.html' %}
+{% block title %} Create a Lead {% endblock %}
+
+{% block body %}
+{% load tailwind_filters %}
+<div class="max-w-lg mx-auto">
+    <h1 class="mb-3 title-font font-medium text-3xl mb-5">Create a Lead</h1>
+    <form method="post" action=".">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="rounded-md text-white w-full bg-indigo-500 hover:bg-indigo-600 px-3 py-1">Create</button>
+    </form>
+    <div class="mt-5 border-t border-gray-200 py-5">
+        <a href="{% url 'lead-home' %}" class="mt-3 hover:text-blue-500">Back</a>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+{% block title %} Agents {% endblock %}
+
+{% block body %}
+<div class="container">
+     <div class="lg:w-2/3 w-full mx-auto overflow-auto mt-4">
+         {% if request.user.is_organizer %}
+        <a class="flex ml-auto text-white bg-indigo-500 border-0 py-2 md:mb-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" style="float:right!important;" href="{% url 'agent-create' %}">Create New</a>
+         {% endif %}
+         <h3 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Agents</h3>
+         <hr>
+        <section class="text-gray-600 body-font">
+          <div class="container px-5 py-20 mx-auto flex flex-wrap">
+                <div class="lg:w-3/3 w-full mx-auto overflow-auto">
+                  <table class="table-auto w-full text-left whitespace-no-wrap">
+                    <thead>
+                      <tr>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">First Name</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Last Name</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Username</th>
+                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Email</th>
+                        <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                        <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                      </tr>
+                    </thead>
+                      <tbody>
+                      {% for agent in object_list %}
+                          <tr>
+                            <td class="px-4 py-3 hover:text-blue-500"><a href="{% url 'agent-details' agent.id %}">{{ agent.user.first_name }}</a></td>
+                            <td class="px-4 py-3">{{ agent.user.last_name }}</td>
+                            <td class="px-4 py-3">{{ agent.user.username }}</td>
+                            <td class="px-4 py-3">{{ agent.user.email }}</td>
+                            <td class="w-10 text-center">
+                                <a class="text-gray-500 hover:text-blue-500" href="{% url 'agent-update' agent.id %}">Edit</a>
+                            </td>
+                            <td>
+                                <a class="text-gray-500 hover:text-blue-500 ml-3" href="{% url 'agent-delete' agent.id %}">Delete</a>
+                            </td>
+                          </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
